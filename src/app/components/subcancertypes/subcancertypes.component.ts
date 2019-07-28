@@ -5,6 +5,7 @@ import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {Subcancertype2Service} from '../../subcancertype2.service';
 import {RegimenDetailService} from '../../regimen-detail.service';
+import {CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT} from '../../global.constants';
 
 
 @Component({
@@ -53,8 +54,8 @@ export class SubcancertypesComponent implements OnInit {
 
   ngOnInit(): void {
     this.crumbs = [
-      {label:'PatientTypes',url: 'http://localhost:4200/patients'},
-      {label:'CancerTypes', url: 'http://localhost:4200/cancerTypes' + '/' + this.routes.snapshot.params["id"]},
+      {label:'PatientTypes',url: PATIENT_TYPES_ENDPOINT},
+      {label:'CancerTypes', url: CANCER_TYPES_ENDPOINT + this.routes.snapshot.params["id"]},
       {label:'SubCancerTypes',  url: this.route.url}
     ]
   }

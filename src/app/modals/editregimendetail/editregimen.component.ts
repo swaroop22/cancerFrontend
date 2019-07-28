@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SubcancertypeService} from '../../subcancertype.service';
 import {Subcancertype2Service} from '../../subcancertype2.service';
-import {Subcancertype3Service} from '../../subcancertype3.service';
 
 @Component({
   selector: 'app-editregimen',
@@ -20,11 +19,9 @@ export class EditregimenComponent{
   id3: number;
 
   constructor(private subCancerType1Service: SubcancertypeService,
-              private subCancerType2Service: Subcancertype2Service,
-              private subCancerType3Service: Subcancertype3Service) {
+              private subCancerType2Service: Subcancertype2Service) {
     this.getSubCancerTypes();
     this.getSubCancerTypes2();
-    this.getSubCancerTypes3();
   }
 
   okay() {
@@ -53,15 +50,6 @@ export class EditregimenComponent{
       that.subCancerTypes2 = resp;
     }, function (error) {
       alert('Error in getting SubCancer2 Types');
-    });
-  }
-
-  getSubCancerTypes3(){
-    const that = this;
-    this.subCancerType3Service.getAllSubCancerTypes3().subscribe(function (resp) {
-      that.subCancerTypes3 = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer3 Types');
     });
   }
 

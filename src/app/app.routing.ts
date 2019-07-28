@@ -7,7 +7,6 @@ import {SubcancertypesComponent} from './components/subcancertypes/subcancertype
 import {EditregimenComponent} from './modals/editregimendetail/editregimen.component';
 import {RegimendetailsComponent} from './components/regimendetails/regimendetails.component';
 import {Subcancertypes2Component} from './components/subcancertype2/subcancertypes2.component';
-import {Subcancertypes3Component} from './components/subcancertype3/subcancertypes3.component';
 
 export const routes: Routes = [
   {
@@ -59,13 +58,6 @@ export const routes: Routes = [
     data: {
       title: 'subcancertypes2'
     },
-  },
-  {
-    path: 'subCancerTypes3/:id',
-    component: Subcancertypes3Component,
-    data: {
-      title: 'subcancertypes3'
-    },
   }
 ];
 
@@ -74,5 +66,4 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-
 }

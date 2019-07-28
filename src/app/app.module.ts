@@ -28,8 +28,6 @@ import {DeletesubcancertypesComponent} from './modals/deletesubcancertypes/delet
 import {EditsubcancertypesComponent} from './modals/editsubcancertypes/editsubcancertypes.component';
 import {Subcancertypes2Component} from './components/subcancertype2/subcancertypes2.component';
 
-import {TreeTableModule} from 'primeng/treetable';
-import {Subcancertypes3Component} from './components/subcancertype3/subcancertypes3.component';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -55,7 +53,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DeletesubcancertypesComponent,
     EditsubcancertypesComponent,
     Subcancertypes2Component,
-    Subcancertypes3Component
   ],
   imports: [
     BrowserModule,
@@ -68,7 +65,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CKEditorModule,
     BreadcrumbsModule,
     BreadcrumbModule,
-    TreeTableModule,
     MultiSelectModule,
     BrowserAnimationsModule,
     HttpModule],

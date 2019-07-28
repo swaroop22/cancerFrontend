@@ -1,11 +1,11 @@
 import {CancerTypeService} from '../../cancer-type.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CancerType} from '../../state/CancerType';
 import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SubcancertypeService} from '../../subcancertype.service';
 import {Subcancertype2Service} from '../../subcancertype2.service';
+import {API_ENDPOINT} from '../../global.constants';
 
 @Component({
   selector: 'app-cancertype',
@@ -48,7 +48,7 @@ export class CancertypeComponent {
       alert('Error in getting SubCancer Types');
     });
     this.crumbs = [
-      {label:'PatientTypes',  url: 'http://localhost:4200/patients', styleClass: 'ui-breadcrumb'},
+      {label:'PatientTypes',  url: API_ENDPOINT +'/patients', styleClass: 'ui-breadcrumb'},
      {label:'CancerTypes',url: this.route.url}
      ];
 
@@ -61,6 +61,7 @@ export class CancertypeComponent {
     else {
       this.url = '/regimenDetails';
     }
+   console.log("api"+API_ENDPOINT)
   }
   getCancerTypes(){
     const that = this;
@@ -125,7 +126,7 @@ export class CancertypeComponent {
     });
   }
 
-  addCancerTypes(event: CancerType) {
+  addCancerTypes(event) {
     const that = this;
     this.cancerTypeService.addCancerTypes(event).subscribe(function (resp) {
       that.getCancerTypes();

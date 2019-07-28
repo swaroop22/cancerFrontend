@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/internal/Observable';
 import { map } from "rxjs/operators";
-import {CancerType} from './state/CancerType';
 
 
 
@@ -23,7 +22,7 @@ export class PatientsService {
 
   }
 
-  addPatientTypes(obj: CancerType): Observable<any> {
+  addPatientTypes(obj): Observable<any> {
 
     var url = this.ApiUrl + '/' + 'add';
     return this.http.post(url, obj).pipe(map( response => {

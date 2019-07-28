@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {Subcancertype2Service} from '../../subcancertype2.service';
-import {Subcancertype3Service} from '../../subcancertype3.service';
+import {API_ENDPOINT, CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT, SUB_CANCERTYPES_ENDPOINT} from '../../global.constants';
 
 
 @Component({
@@ -24,11 +24,9 @@ export class Subcancertypes2Component implements OnInit {
   public addSubCancerTypeError = '';
   crumbs: MenuItem[];
   public url: string;
-  cities2: any[];
   subCancerTypes2: string ="subCancerTypes2";
 
   constructor(private subCancerType1Service: Subcancertype2Service,
-              private  subcancertype3Service : Subcancertype3Service,
               private routes: ActivatedRoute,
               private route: Router) {
     this.getSubCancerTypes();
@@ -38,17 +36,10 @@ export class Subcancertypes2Component implements OnInit {
 
   ngOnInit(): void {
     this.crumbs = [
-      {label:'PatientTypes', url: 'http://localhost:4200/patients'},
-      {label:'CancerTypes',  url: 'http://localhost:4200/cancerTypes' + '/' + this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes',  url: 'http://localhost:4200/subCancerTypes' + '/' + this.routes.snapshot.params["id"]},
+      {label:'PatientTypes', url: PATIENT_TYPES_ENDPOINT },
+      {label:'CancerTypes',  url:  CANCER_TYPES_ENDPOINT+ this.routes.snapshot.params["id"]},
+      {label:'SubCancerTypes',  url:  SUB_CANCERTYPES_ENDPOINT + this.routes.snapshot.params["id"]},
       {label:'SubCancerTypes2',   url: this.route.url}
-    ];
-    this.cities2 = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
     ];
   }
 

@@ -21,12 +21,7 @@ export class PatientsComponent implements OnInit {
   @ViewChild('editModal') public editModal: ModalDirective;
   public addPersonError = '';
   public Patient = {};
-  errorMessage: string;
-
-
-
-
-  public Patients: TreeNode[] = [];
+  public Patients = [];
 
   id: number;
 

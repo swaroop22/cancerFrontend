@@ -3,6 +3,13 @@ import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {RegimenDetailService} from '../../regimen-detail.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {
+  API_ENDPOINT,
+  CANCER_TYPES_ENDPOINT,
+  PATIENT_TYPES_ENDPOINT,
+  SUB_CANCERTYPES2_ENDPOINT,
+  SUB_CANCERTYPES_ENDPOINT
+} from '../../global.constants';
 
 
 @Component({
@@ -25,7 +32,6 @@ export class RegimendetailsComponent implements OnInit {
   public isDeleteModal = false;
 
   public RegimenDetail = {};
-  public addRegimenDeatilsError = '';
   crumbs: MenuItem[];
 
   constructor(private RegimenDetailService: RegimenDetailService,
@@ -33,10 +39,10 @@ export class RegimendetailsComponent implements OnInit {
               private route: Router) {
     this.getRegimens();
     this.crumbs = [
-      {label:'PatientTypes', url: 'http://localhost:4200/patients'},
-      {label:'CancerTypes',url: 'http://localhost:4200/cancerTypes' + '/' +this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes', url: 'http://localhost:4200/subCancerTypes' + '/' + this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes2',  url: 'http://localhost:4200/subCancerTypes2' + '/' + this.routes.snapshot.params["id"]},
+      {label:'PatientTypes', url: PATIENT_TYPES_ENDPOINT},
+      {label:'CancerTypes',url: CANCER_TYPES_ENDPOINT +this.routes.snapshot.params["id"]},
+      {label:'SubCancerTypes', url: SUB_CANCERTYPES_ENDPOINT + this.routes.snapshot.params["id"]},
+      {label:'SubCancerTypes2',  url: SUB_CANCERTYPES2_ENDPOINT + this.routes.snapshot.params["id"]},
       {label:'RegimenDetails', url: this.route.url}
     ]
   }

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {PatientsService} from '../../patients.service';
-import {CancerType} from '../../state/CancerType';
 
 
 
@@ -16,7 +15,7 @@ export class AddcancertypesComponent implements OnChanges {
   @Input() Error: any;
   public patientNames = [];
   id: number;
-  public CancerType: CancerType;
+  public CancerType;
 
   constructor(private patientsService: PatientsService){
     this.getPatientsNames();

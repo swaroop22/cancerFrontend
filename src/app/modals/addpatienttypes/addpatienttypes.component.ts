@@ -15,10 +15,6 @@ export class AddpatienttypesComponent implements OnChanges {
     title: ''
   };
 
-  constructor() {
-
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.Error.currentValue.login) {
       this.initEmptyUser();

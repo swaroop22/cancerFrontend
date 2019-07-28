@@ -2,7 +2,7 @@ import {CancerTypeService} from '../../cancer-type.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {SubcancertypeService} from '../../subcancertype.service';
 import {Subcancertype2Service} from '../../subcancertype2.service';
 import {API_ENDPOINT} from '../../global.constants';
@@ -27,15 +27,13 @@ export class CancertypeComponent {
   public addCancerTypeError = '';
   public subCancerType = {};
   public subCancerType2 = {};
-  public subCancerType3  = {};
   public url: string;
 
   constructor(private cancerTypeService: CancerTypeService,
               private routes: ActivatedRoute,
               private route: Router,
               private subcancertypeService: SubcancertypeService,
-              private subcancertypeService2: Subcancertype2Service,
-              private subcancertypeService3: SubcancertypeService) {
+              private subcancertypeService2: Subcancertype2Service) {
     this.getCancerTypes();
     this.subcancertypeService.getSubCancerTypes(this.routes.snapshot.params["id"]).subscribe(function (resp) {
       this.subCancerType = resp;
@@ -48,8 +46,8 @@ export class CancertypeComponent {
       alert('Error in getting SubCancer Types');
     });
     this.crumbs = [
-      {label:'PatientTypes',  url: API_ENDPOINT +'/patients', styleClass: 'ui-breadcrumb'},
-     {label:'CancerTypes',url: this.route.url}
+      {label:'PATIENTTYPES',  url: API_ENDPOINT +'/patients', styleClass: 'ui-breadcrumb'},
+     {label:'CANCERTYPES',url: this.route.url}
      ];
 
     if( (!this.subCancerType == null)  &&((Object.keys(this.subCancerType).length != 0)) ){
@@ -61,7 +59,6 @@ export class CancertypeComponent {
     else {
       this.url = '/regimenDetails';
     }
-   console.log("api"+API_ENDPOINT)
   }
   getCancerTypes(){
     const that = this;

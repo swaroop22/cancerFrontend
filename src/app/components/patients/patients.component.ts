@@ -22,11 +22,8 @@ export class PatientsComponent implements OnInit {
   public addPersonError = '';
   public Patient = {};
   public Patients = [];
-
   id: number;
-
   public isAddPatientModal = false;
-
   public isEditModal = false;
   public isDeleteModal = false;
 
@@ -37,7 +34,7 @@ export class PatientsComponent implements OnInit {
     constructor(private PatientsService: PatientsService, private route: Router) {
     this.getPatients();
     this.crumbs = [
-      {label:'PatientTypes',url: this.route.url}
+      {label:'PATIENTTYPES',url: this.route.url}
     ];
   }
 
@@ -114,8 +111,6 @@ export class PatientsComponent implements OnInit {
         alert('Please delete your CancerTypes before you this delete patient type');
         that.deleteModal.hide();
       }
-      console.log();
-
     });
   }
 

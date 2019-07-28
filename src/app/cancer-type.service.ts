@@ -2,18 +2,19 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/internal/Observable';
 import { map } from "rxjs/operators";
+import {API_URL} from './global.constants';
 
 
 
 @Injectable()
 export class CancerTypeService {
-  private ApiUrl = 'http://localhost:8092/cancerTypeControllerById';
+  private ApiUrl = API_URL+'cancerTypeControllerById/';
 
   constructor(private http: Http) {
   }
 
   getCancerTypes( id: number): Observable<any> {
-    var url = this.ApiUrl + "/" + id.toString();
+    var url = this.ApiUrl  + id.toString();
     return this.http.get(url).pipe(map( response => {
       return response.json();
     }))
@@ -25,7 +26,7 @@ export class CancerTypeService {
 
   addCancerTypes(obj): Observable<any> {
 
-    var url = this.ApiUrl + '/' + 'add';
+    var url = this.ApiUrl  + 'add';
     return this.http.post(url, obj).pipe(map( response => {
       return response.json();
     }))
@@ -36,7 +37,7 @@ export class CancerTypeService {
 
   editCancerTypes(obj): Observable<any> {
 
-    var url = this.ApiUrl + '/' + 'edit';
+    var url = this.ApiUrl  + 'edit';
     return this.http.put(url, obj).pipe(map( response => {
       return response.json();
     }))

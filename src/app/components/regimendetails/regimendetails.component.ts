@@ -4,7 +4,6 @@ import {MenuItem} from 'primeng/api';
 import {RegimenDetailService} from '../../regimen-detail.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {
-  API_ENDPOINT,
   CANCER_TYPES_ENDPOINT,
   PATIENT_TYPES_ENDPOINT,
   SUB_CANCERTYPES2_ENDPOINT,
@@ -39,11 +38,11 @@ export class RegimendetailsComponent implements OnInit {
               private route: Router) {
     this.getRegimens();
     this.crumbs = [
-      {label:'PatientTypes', url: PATIENT_TYPES_ENDPOINT},
-      {label:'CancerTypes',url: CANCER_TYPES_ENDPOINT +this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes', url: SUB_CANCERTYPES_ENDPOINT + this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes2',  url: SUB_CANCERTYPES2_ENDPOINT + this.routes.snapshot.params["id"]},
-      {label:'RegimenDetails', url: this.route.url}
+      {label:'PATIENTTYPES', url: PATIENT_TYPES_ENDPOINT},
+      {label:'CANCERTYPES',url: CANCER_TYPES_ENDPOINT +this.routes.snapshot.params["id"]},
+      {label:'SUBCANCERTYPES', url: SUB_CANCERTYPES_ENDPOINT + this.routes.snapshot.params["id"]},
+      {label:'SUBCANCERTYPES2',  url: SUB_CANCERTYPES2_ENDPOINT + this.routes.snapshot.params["id"]},
+      {label:'REGIMENDETAILS', url: this.route.url}
     ]
   }
 

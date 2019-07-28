@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/internal/Observable';
 import { map } from "rxjs/operators";
+import {API_URL} from './global.constants';
 
 
 
 @Injectable()
 export class PatientsService {
-  private ApiUrl = 'http://localhost:8092/patientController';
+  private ApiUrl = API_URL +'/patientController/';
 
   constructor(private http: Http) {
   }
@@ -24,7 +25,7 @@ export class PatientsService {
 
   addPatientTypes(obj): Observable<any> {
 
-    var url = this.ApiUrl + '/' + 'add';
+    var url = this.ApiUrl + 'add';
     return this.http.post(url, obj).pipe(map( response => {
       return response.json();
     }))
@@ -35,7 +36,7 @@ export class PatientsService {
 
   editPatientTypes(obj): Observable<any> {
 
-    var url = this.ApiUrl + '/' + 'edit';
+    var url = this.ApiUrl  + 'edit';
     return this.http.put(url, obj).pipe(map( response => {
       return response.json();
     }))
@@ -45,7 +46,7 @@ export class PatientsService {
   }
 
   deletePatientTypes(id: number): Observable<any> {
-    return this.http.delete(this.ApiUrl + '/' + id).pipe(map( response => {
+    return this.http.delete(this.ApiUrl + id).pipe(map( response => {
       return response.json();
     }))
     onerror: ( (error) => {

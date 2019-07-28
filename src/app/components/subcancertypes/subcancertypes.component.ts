@@ -54,9 +54,9 @@ export class SubcancertypesComponent implements OnInit {
 
   ngOnInit(): void {
     this.crumbs = [
-      {label:'PatientTypes',url: PATIENT_TYPES_ENDPOINT},
-      {label:'CancerTypes', url: CANCER_TYPES_ENDPOINT + this.routes.snapshot.params["id"]},
-      {label:'SubCancerTypes',  url: this.route.url}
+      {label:'PATIENTTYPES',url: PATIENT_TYPES_ENDPOINT},
+      {label:'CANCERTYPES', url: CANCER_TYPES_ENDPOINT + this.routes.snapshot.params["id"]},
+      {label:'SUBCANCERTYPES',  url: this.route.url}
     ]
   }
 

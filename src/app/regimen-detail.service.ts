@@ -4,12 +4,13 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/internal/Observable';
 import { map } from "rxjs/operators";
+import {API_URL} from './global.constants';
 
 
 @Injectable()
 export class RegimenDetailService {
 
-  private ApiUrl = 'http://localhost:8092/regimenDetailController';
+  private ApiUrl = API_URL + '/regimenDetailController/';
 
   constructor(private http: Http) {
   }
@@ -26,7 +27,7 @@ export class RegimenDetailService {
 
 
   getRegimenDetails(id: number): Observable<any> {
-    var url = this.ApiUrl + "/" + id.toString() +'/names';
+    var url = this.ApiUrl  + id.toString() +'/names';
     return this.http.get(url).pipe(map(response => {
       return response.json();
     }))
@@ -47,7 +48,7 @@ export class RegimenDetailService {
   }
 
   updateRegimenDetail(obj): Observable<any> {
-    return this.http.put(this.ApiUrl + '/' + obj.id, obj).pipe(map( response => {
+    return this.http.put(this.ApiUrl + obj.id, obj).pipe(map( response => {
       return response.json();
     }))
     onerror: ( (error) => {
@@ -56,7 +57,7 @@ export class RegimenDetailService {
   }
 
   deleteRegimenDetail(id: number): Observable<any> {
-    return this.http.delete(this.ApiUrl + '/' + id).pipe(map( response => {
+    return this.http.delete(this.ApiUrl  + id).pipe(map( response => {
       return response.json();
     }))
     onerror: ( (error) => {

@@ -1,23 +1,37 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {RegimenDetailService} from '../../regimen-detail.service';
 
 @Component({
-  selector: 'app-editcancertypes',
-  templateUrl: './editcancertypes.component.html',
-  styleUrls: ['./editcancertypes.component.scss']
+  selector: 'app-editsubcancertypes',
+  templateUrl: './editsubcancertypes.component.html',
+  styleUrls: ['./editsubcancertypes.component.scss']
 })
-export class EditcancertypesComponent{
+export class EditsubcancertypesComponent{
   @Output() yes = new EventEmitter();
   @Output() cancel = new EventEmitter();
-  @Input() CancerType: any;
-  constructor() {
+  @Input() SubCancerType: any;
+  public regimenDetails: any= [];
+  constructor(private RegimenDetailService: RegimenDetailService ) {
+    this.getRegimens();
   }
 
   okay() {
-    this.yes.emit(this.CancerType);
+    this.yes.emit(this.SubCancerType);
   }
 
   close(event) {
     this.cancel.emit(event);
+  }
+
+  getRegimens() {
+    const that = this;
+    this.RegimenDetailService.getRegimens().subscribe((resp) => {
+      resp.forEach(regimen => {
+        this.regimenDetails.push({label: regimen.dispName, value: regimen});
+      });
+    }, function (error) {
+      alert('Error in getting medicines');
+    });
   }
 
 }

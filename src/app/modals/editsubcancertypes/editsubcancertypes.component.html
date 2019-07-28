@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Edit Patinet Type</h4>
+      <h4 class="modal-title pull-left">Edit SubCancer Type</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="close($event)">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -9,8 +9,21 @@
     <div class="modal-body">
       <form class="form">
         <div class="form-group">
-          <label class="form-control-label">Patient Title</label>
-          <input type="text" class="form-control" placeholder="Name" name="username" [(ngModel)]="CancerType.title">
+          <label class="form-control-label">SubCancerType Title</label>
+          <input type="text" class="form-control" placeholder="title" name="title" [(ngModel)]="SubCancerType.title">
+
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Select Regimens</label>
+          <p-multiSelect  class="form-control"  [options]="regimenDetails"  #multiselect
+                          id="regimens" [panelStyle]="{minWidth:'12em'}">
+            <ng-template let-value pTemplate="selectedItems">
+              <div *ngFor="let val of value" class="ui-multiselected-item-token ui-corner-all">
+                <span>{{val.dispName}}</span>
+              </div>
+              <span *ngIf="!value || value.length === 0" class="ui-multiselected-empty-token ui-corner-all">Choose</span>
+            </ng-template>
+          </p-multiSelect>
         </div>
       </form>
     </div>

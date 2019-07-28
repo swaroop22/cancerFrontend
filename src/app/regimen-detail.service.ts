@@ -1,3 +1,5 @@
+/* tslint:disable */
+
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/internal/Observable';
@@ -12,7 +14,7 @@ export class RegimenDetailService {
   constructor(private http: Http) {
   }
 
-  getRegimenDetails(): Observable<any> {
+  getRegimens(): Observable<any> {
     return this.http.get(this.ApiUrl).pipe(map(response => {
       return response.json();
     }))
@@ -22,8 +24,21 @@ export class RegimenDetailService {
 
   }
 
+
+  getRegimenDetails(id: number): Observable<any> {
+    var url = this.ApiUrl + "/" + id.toString() +'/names';
+    return this.http.get(url).pipe(map(response => {
+      return response.json();
+    }))
+    onerror: ((error) => {
+      return error;
+    })
+
+  }
+
   addRegimenDetail(obj): Observable<any> {
-    return this.http.post(this.ApiUrl, obj).pipe(map( response => {
+    var url = this.ApiUrl + '/add';
+    return this.http.post(url, obj).pipe(map( response => {
       return response.json();
     }))
     onerror: ( (error) => {
@@ -40,8 +55,8 @@ export class RegimenDetailService {
     })
   }
 
-  deleteRegimenDetail(obj): Observable<any> {
-    return this.http.delete(this.ApiUrl + '/' + obj.id).pipe(map( response => {
+  deleteRegimenDetail(id: number): Observable<any> {
+    return this.http.delete(this.ApiUrl + '/' + id).pipe(map( response => {
       return response.json();
     }))
     onerror: ( (error) => {

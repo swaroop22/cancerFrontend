@@ -16,7 +16,6 @@
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>SubCancerType Id</th>
                   <th>SubCancer Type</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -24,8 +23,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let subCancerType of subCancerTypes">
-                  <td >{{subCancerType.cancerTypeId}}</td>
-                  <td ><u [routerLink]="['/regimenDetails', subCancerType.cancerTypeId]">{{subCancerType.title}}</u></td>
+                  <td ><u [routerLink]="[ url, subCancerType.subcancertypeid]">{{subCancerType.title}}</u></td>
                   <td>
                     <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"
                        (click)="edit(subCancerType)"></i>
@@ -47,7 +45,7 @@
 
 <app-addsubcancertypes *ngIf="isAddSubCancerTypeModal" (onHide)="onHide('add')" [config]="{ show: true }" bsModal
                     #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
-                       [Error]="addSubCancerTypeError"></app-addsubcancertypes>
+                       [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancertypes>
 
 <app-editsubcancertypes *ngIf="isEditModal" (onHide)="onHide('edit')" [config]="{ show: true }" bsModal
                      #editModal="bs-modal" (yes)="editSubCancerTypes($event)" (cancel)="onClose('edit')" class="modal fade" [SubCancerType]="SubCancerType"></app-editsubcancertypes>

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {Subcancertype2Service} from '../../subcancertype2.service';
-import {API_ENDPOINT, CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT, SUB_CANCERTYPES_ENDPOINT} from '../../global.constants';
+import { CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT, SUB_CANCERTYPES_ENDPOINT} from '../../global.constants';
 
 
 @Component({
@@ -20,6 +20,7 @@ export class Subcancertypes2Component implements OnInit {
   public isEditModal = false;
   public isDeleteModal = false;
   public isAddSubCancerTypeModal = false;
+  public isAddSubCancerLevels = false;
   public SubCancerType = {};
   public addSubCancerTypeError = '';
   crumbs: MenuItem[];
@@ -45,6 +46,10 @@ export class Subcancertypes2Component implements OnInit {
 
   showAddSubCancerType() {
     this.isAddSubCancerTypeModal = true;
+  }
+
+  showAddSubCancerLevels(){
+    this.isAddSubCancerLevels = true;
   }
 
   getSubCancerTypes(){

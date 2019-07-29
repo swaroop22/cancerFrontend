@@ -16,7 +16,6 @@
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>PatientType Id</th>
                   <th>Cancer Type</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -24,7 +23,6 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let cancerType of CancerTypes">
-                  <td >{{cancerType.patienttypeid}}</td>
                   <td ><u [routerLink]="[url, cancerType.patienttypeid]">{{cancerType.title}}</u></td>
                   <td>
                     <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"

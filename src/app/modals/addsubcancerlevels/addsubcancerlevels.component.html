@@ -9,16 +9,29 @@
     <div class="modal-body">
       <form class="form">
         <div class="form-group">
-          <label class="form-control-label">Sub CancerType Title</label>
-          <input type="text" class="form-control" placeholder="title" name="title" [(ngModel)]="CancerType.title">
-        </div>
-        <div class="form-group">
           <label class="form-control-label">Select SubCancer Types</label>
           <select class="form-control" (change)="onSelect($event.target.value)" required>
             <option>Select Your Patient Type</option>
             <option *ngFor="let cancerType of CancerTypes" [value]="cancerType.id">{{cancerType.title}}</option>
           </select>
         </div>
+        <div class="form-group">
+          <label class="form-control-label">Sub CancerType Title</label>
+          <input type="text" class="form-control" placeholder="title" name="title" [(ngModel)]="CancerType.title">
+        </div>
+
+        <div class="form-group">
+        <label class="form-control-label">Select Regimens</label>
+        <p-multiSelect  class="form-control"  [options]="regimenDetails"  #multiselect
+                        id="regimens" [panelStyle]="{minWidth:'12em'}">
+          <ng-template let-value pTemplate="selectedItems">
+            <div *ngFor="let val of value" class="ui-multiselected-item-token ui-corner-all">
+              <span>{{val.dispName}}</span>
+            </div>
+            <span *ngIf="!value || value.length === 0" class="ui-multiselected-empty-token ui-corner-all">Choose</span>
+          </ng-template>
+        </p-multiSelect>
+      </div>
       </form>
     </div>
     <div class="modal-footer">

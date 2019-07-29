@@ -50,7 +50,7 @@
       <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <button class="btn btn-primary pull-right">Add SubCancerLevels</button>
+            <button class="btn btn-primary pull-right" (click)="showAddSubCancerLevels()">Add SubCancerLevels</button>
           </div>
           <div class="card-block">
             <div class="table-responsive">
@@ -87,6 +87,10 @@
 <app-addsubcancertypes *ngIf="isAddSubCancerTypeModal" (onHide)="onHide('add')" [config]="{ show: true }" bsModal
                     #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancertypes>
+
+<app-addsubcancerlevels *ngIf="isAddSubCancerLevels" (onHide)="onHide('add')" [config]="{ show: true }" bsModal
+                        #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
+                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancerlevels>
 
 <app-editsubcancertypes *ngIf="isEditModal" (onHide)="onHide('edit')" [config]="{ show: true }" bsModal
                      #editModal="bs-modal" (yes)="editSubCancerTypes($event)" (cancel)="onClose('edit')" class="modal fade" [SubCancerType]="SubCancerType"></app-editsubcancertypes>

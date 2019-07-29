@@ -11,11 +11,11 @@ import {Subcancertypes2Component} from './components/subcancertype2/subcancertyp
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'patients',
+    redirectTo: 'patientTypes',
     pathMatch: 'full',
   },
   {
-    path: 'patients',
+    path: 'patientTypes',
     component: PatientsComponent,
     data: {
       title: 'patientTypes',

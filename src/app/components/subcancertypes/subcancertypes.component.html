@@ -16,15 +16,13 @@
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>SubCancerType Id</th>
-                  <th>SubCancer Type</th>
+                  <th>SubCancer Title</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let subCancerType of subCancerTypes">
-                  <td >{{subCancerType.cancerTypeId}}</td>
                   <td ><u [routerLink]="[url, subCancerType.cancerTypeId]">{{subCancerType.title}}</u></td>
                   <td>
                     <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"

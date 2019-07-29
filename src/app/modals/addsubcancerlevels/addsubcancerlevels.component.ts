@@ -5,20 +5,21 @@ import {RegimenDetailService} from '../../regimen-detail.service';
 import {MultiSelect} from 'primeng/primeng';
 
 @Component({
-  selector: 'app-addsubcancertypes',
-  templateUrl: './addsubcancertypes.component.html',
-  styleUrls: ['./addsubcancertypes.component.scss']
+  selector: 'app-addsubcancerlevels',
+  templateUrl: './addsubcancerlevels.component.html',
+  styleUrls: ['./addsubcancerlevels.component.scss']
 })
 /* tslint:disable */
 
 
-export class AddsubcancertypesComponent implements OnChanges {
+export class AddsubcancerlevelsComponent implements OnChanges {
 
   @Output() yes = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Input() Error: any;
   id: number;
   public CancerTypes: any = [];
+  @ViewChild('multiselect') multi: MultiSelect;
   @Input() subCancerType: string;
 
   public regimenDetails: any= [];
@@ -26,7 +27,8 @@ export class AddsubcancertypesComponent implements OnChanges {
 
   public CancerType = {
     id:0,
-    title: ''
+    title: '',
+    regimenDetailList: []
   };
 
   constructor(private cancerTypeService: CancerTypeService,
@@ -55,6 +57,7 @@ export class AddsubcancertypesComponent implements OnChanges {
     const CancerType = {
       id:0,
       title: '',
+      regimenDetailList: ''
     };
     this.CancerType = JSON.parse(JSON.stringify(CancerType));
   }
@@ -62,6 +65,7 @@ export class AddsubcancertypesComponent implements OnChanges {
   okay() {
     this.CancerType.id = this.routes.snapshot.params["id"];
     if(this.subCancerType == "subCancerTypes2"){
+      this.CancerType.regimenDetailList = this.multi.value;
     }
     this.yes.emit(this.CancerType);
   }

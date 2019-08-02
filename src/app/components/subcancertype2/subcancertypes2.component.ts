@@ -17,6 +17,7 @@ export class Subcancertypes2Component implements OnInit {
   @ViewChild('addModal') public addModal: ModalDirective;
   @ViewChild('deleteModal') public deleteModal: ModalDirective;
   @ViewChild('editModal') public editModal: ModalDirective;
+  @ViewChild('addModal2') public addModal2: ModalDirective;
   public isEditModal = false;
   public isDeleteModal = false;
   public isAddSubCancerTypeModal = false;
@@ -75,7 +76,9 @@ export class Subcancertypes2Component implements OnInit {
   onClose(event) {
     if (event === 'add') {
       this.addModal.hide();
-    }  else if (event === 'edit') {
+    }  else if(event === 'add2'){
+      this.addModal2.hide();
+    } if (event === 'edit') {
       this.editModal.hide();
     } else if (event === 'delete') {
       this.deleteModal.hide();
@@ -85,7 +88,9 @@ export class Subcancertypes2Component implements OnInit {
   onHide(event) {
     if (event === 'add') {
       this.isAddSubCancerTypeModal = false;
-    }  else if (event === 'edit') {
+    } else if (event === 'add2') {
+      this.isAddSubCancerLevels = false;
+    } if (event === 'edit') {
       this.isEditModal = false;
     } else if (event === 'delete') {
       this.isDeleteModal = false;
@@ -97,6 +102,7 @@ export class Subcancertypes2Component implements OnInit {
     this.subCancerType1Service.addSubCancerTypes2(event).subscribe(function (resp) {
       that.getSubCancerTypes();
       that.addModal.hide();
+      that.addModal2.hide();
     }, function (error) {
       alert('Person add error ' + event);
     });

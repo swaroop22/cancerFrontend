@@ -5,6 +5,7 @@ import {CancerTypeService} from './cancer-type.service';
 import {SubcancertypeService} from './subcancertype.service';
 import {RegimenDetailService} from './regimen-detail.service';
 import {Subcancertype2Service} from './subcancertype2.service';
+import {SubcancerlevelsService} from './subcancerlevels.service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {Subcancertype2Service} from './subcancertype2.service';
     CancerTypeService,
     SubcancertypeService,
     RegimenDetailService,
-    Subcancertype2Service
+    Subcancertype2Service,
+    SubcancerlevelsService
   ],
   declarations: []
 })

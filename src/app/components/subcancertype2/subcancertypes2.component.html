@@ -88,8 +88,8 @@
                     #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancertypes>
 
-<app-addsubcancerlevels *ngIf="isAddSubCancerLevels" (onHide)="onHide('add')" [config]="{ show: true }" bsModal
-                        #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
+<app-addsubcancerlevels *ngIf="isAddSubCancerLevels" (onHide)="onHide('add2')" [config]="{ show: true }" bsModal
+                        #addModal2="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
                         [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancerlevels>
 
 <app-editsubcancertypes *ngIf="isEditModal" (onHide)="onHide('edit')" [config]="{ show: true }" bsModal

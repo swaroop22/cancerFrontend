@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnChanges, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 
 
@@ -9,15 +9,16 @@ import {Component, EventEmitter, OnChanges, Output} from '@angular/core';
 })
 export class ViewregimensComponent {
 
-  @Output() yes = new EventEmitter();
+  @Input() public regimens: any = [];
   @Output() cancel = new EventEmitter();
+  @Output() yes = new EventEmitter();
 
 
   okay(event) {
     this.yes.emit(event);
   }
 
-  close(event){
+  close(event) {
     this.cancel.emit(event);
   }
 

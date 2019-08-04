@@ -63,12 +63,12 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let subcancerLevel of SubCancerTypeLevels">
-                  {{subcancerLevel | json}}
-                  <td >{{subcancerLevel.id | json}}</td>
+                  <td > <u (click)="view(subcancerLevel)">{{subcancerLevel.title}}</u></td>
                   <td> <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="View SubCancerType"
-                          ></i></td>
+                          (click)="view(subcancerLevel)"></i></td>
                 </tr>
                 </tbody>
+
               </table>
             </div>
           </div>
@@ -93,4 +93,5 @@
                        #deleteModal="bs-modal" (yes)="deleteSubCancerTypes($event)" (cancel)="onClose('delete')" class="modal fade" [SubCancerType]="SubCancerType"></app-deletesubcancertypes>
 
 
-<app-viewregimens *ngIf="isViewAddressModal" (onHide) = "onHide('view')"  [config]="{ show: true }" bsModal> </app-viewregimens>
+<app-viewregimens *ngIf="isViewRegimensModal" (onHide)="onHide('view')" [config]="{ show: true }" bsModal
+                  #viewRegimensModal="bs-modal" (cancel)="onClose('view')" class="modal fade" [regimens]="subCancerLevel"> </app-viewregimens>

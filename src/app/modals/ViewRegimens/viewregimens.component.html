@@ -1,15 +1,30 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Add Cancer Type</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="close($event)">
+      <h4 class="modal-title pull-left">View Regimens</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-     <label>
-
-     </label>
+      <form class="form">
+        <div *ngFor="let regimen of regimens.regimenDetailList; let i = index">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div>Display Name : {{regimen.dispName}}</div>
+                  <div>Brand Names: {{regimen.brandNames}}</div>
+                  <div>Emetogenic Potential : {{regimen.emetogenicPotential}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="close()">Close</button>
     </div>
   </div>
 </div>

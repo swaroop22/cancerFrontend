@@ -19,6 +19,7 @@ export class Subcancertypes2Component implements OnInit {
   @ViewChild('deleteModal') public deleteModal: ModalDirective;
   @ViewChild('editModal') public editModal: ModalDirective;
   @ViewChild('addModal2') public addModal2: ModalDirective;
+  @ViewChild('viewRegimensModal') public viewRegimensModal: ModalDirective;
   public isEditModal = false;
   public isDeleteModal = false;
   public isAddSubCancerTypeModal = false;
@@ -29,7 +30,8 @@ export class Subcancertypes2Component implements OnInit {
   public url: string;
   subCancerTypes2: string ="subCancerTypes2";
   public SubCancerTypeLevels = [];
-  public isViewAddressModal = false;
+  public isViewRegimensModal = false;
+  public  subCancerLevel = {};
 
   constructor(private subCancerType1Service: Subcancertype2Service,
               private subCancerTypeLevels: SubcancerlevelsService,
@@ -59,21 +61,17 @@ export class Subcancertypes2Component implements OnInit {
   }
 
   getSubCancerTypes(){
-    const that = this;
-    this.subCancerType1Service.getSubCancerTypes2(this.routes.snapshot.params["id"]).subscribe(function (resp) {
-      that.subCancerTypes = resp;
-      console.log(resp);
-    }, function (error) {
+    this.subCancerType1Service.getSubCancerTypes2(this.routes.snapshot.params["id"]).subscribe( (resp) => {
+      this.subCancerTypes = resp;
+    }, (error) => {
       alert('Error in getting SubCancer Types');
     });
   }
 
   getSubCancerLevels(){
-    const that = this;
-    this.subCancerTypeLevels.getAllSubCancerLevels().subscribe(function (resp) {
-      that.subCancerTypeLevels = resp;
-      console.log(resp);
-    }, function (error) {
+    this.subCancerTypeLevels.getAllSubCancerLevels().subscribe((resp) => {
+      this.SubCancerTypeLevels = resp;
+    }, (error) => {
       alert('Error in getting SubCancer Types');
     });
   }
@@ -97,6 +95,8 @@ export class Subcancertypes2Component implements OnInit {
       this.editModal.hide();
     } else if (event === 'delete') {
       this.deleteModal.hide();
+    } else  if(event === 'view') {
+      this.viewRegimensModal.hide();
     }
   }
 
@@ -109,6 +109,8 @@ export class Subcancertypes2Component implements OnInit {
       this.isEditModal = false;
     } else if (event === 'delete') {
       this.isDeleteModal = false;
+    } else if(event === 'view'){
+      this.isViewRegimensModal = false;
     }
   }
 
@@ -150,6 +152,14 @@ export class Subcancertypes2Component implements OnInit {
     }, function (error) {
       alert('Error to update SubCancerType ' + data);
     });
+  }
+
+  view(event){
+    if(event){
+      this.subCancerLevel = event;
+      this.isViewRegimensModal = true;
+    }
+
   }
 
 }

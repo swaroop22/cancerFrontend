@@ -31,6 +31,7 @@ import {Subcancertypes2Component} from './components/subcancertype2/subcancertyp
 import {MultiSelectModule} from 'primeng/multiselect';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AddsubcancerlevelsComponent} from './modals/addsubcancerlevels/addsubcancerlevels.component';
+import {ViewregimensComponent} from './modals/ViewRegimens/viewregimens.component';
 
 
 
@@ -54,7 +55,8 @@ import {AddsubcancerlevelsComponent} from './modals/addsubcancerlevels/addsubcan
     DeletesubcancertypesComponent,
     EditsubcancertypesComponent,
     Subcancertypes2Component,
-    AddsubcancerlevelsComponent
+    AddsubcancerlevelsComponent,
+    ViewregimensComponent
   ],
   imports: [
     BrowserModule,

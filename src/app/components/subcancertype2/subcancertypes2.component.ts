@@ -4,6 +4,7 @@ import {ModalDirective} from 'ngx-bootstrap';
 import {MenuItem} from 'primeng/api';
 import {Subcancertype2Service} from '../../subcancertype2.service';
 import { CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT, SUB_CANCERTYPES_ENDPOINT} from '../../global.constants';
+import {SubcancerlevelsService} from '../../subcancerlevels.service';
 
 
 @Component({
@@ -27,11 +28,15 @@ export class Subcancertypes2Component implements OnInit {
   crumbs: MenuItem[];
   public url: string;
   subCancerTypes2: string ="subCancerTypes2";
+  public SubCancerTypeLevels = [];
+  public isViewAddressModal = false;
 
   constructor(private subCancerType1Service: Subcancertype2Service,
+              private subCancerTypeLevels: SubcancerlevelsService,
               private routes: ActivatedRoute,
               private route: Router) {
     this.getSubCancerTypes();
+    this.getSubCancerLevels();
     this.url = '/regimenDetails';
 
   }
@@ -57,6 +62,16 @@ export class Subcancertypes2Component implements OnInit {
     const that = this;
     this.subCancerType1Service.getSubCancerTypes2(this.routes.snapshot.params["id"]).subscribe(function (resp) {
       that.subCancerTypes = resp;
+      console.log(resp);
+    }, function (error) {
+      alert('Error in getting SubCancer Types');
+    });
+  }
+
+  getSubCancerLevels(){
+    const that = this;
+    this.subCancerTypeLevels.getAllSubCancerLevels().subscribe(function (resp) {
+      that.subCancerTypeLevels = resp;
       console.log(resp);
     }, function (error) {
       alert('Error in getting SubCancer Types');
@@ -100,6 +115,15 @@ export class Subcancertypes2Component implements OnInit {
   addSubCancerTypes(event){
     const that = this;
     this.subCancerType1Service.addSubCancerTypes2(event).subscribe(function (resp) {
+      that.addModal2.hide();
+    }, function (error) {
+      alert('Person add error ' + event);
+    });
+  }
+
+  addSubCancerLevels(event){
+    const that = this;
+    this.subCancerTypeLevels.addSubCancerLevels(event).subscribe(function (resp) {
       that.getSubCancerTypes();
       that.addModal.hide();
       that.addModal2.hide();

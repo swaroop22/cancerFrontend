@@ -35,30 +35,12 @@ export class CancertypeComponent {
               private subcancertypeService: SubcancertypeService,
               private subcancertypeService2: Subcancertype2Service) {
     this.getCancerTypes();
-    this.subcancertypeService.getSubCancerTypes(this.routes.snapshot.params["id"]).subscribe(function (resp) {
-      this.subCancerType = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer Types');
-    });
-    this.subcancertypeService2.getSubCancerTypes2(this.routes.snapshot.params["id"]).subscribe(function (resp) {
-      this.subCancerType2 = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer Types');
-    });
     this.crumbs = [
       {label:'PATIENTTYPES',  url: API_ENDPOINT +'/patients', styleClass: 'ui-breadcrumb'},
      {label:'CANCERTYPES',url: this.route.url}
      ];
 
-    if( (!this.subCancerType == null)  &&((Object.keys(this.subCancerType).length != 0)) ){
-      this.url = '/subCancerTypes';
-    }
-    else if((this.subCancerType2 != null) &&((Object.keys(this.subCancerType2).length != 0))){
-      this.url = '/subCancerTypes2';
-    }
-    else {
-      this.url = '/regimenDetails';
-    }
+
   }
   getCancerTypes(){
     const that = this;
@@ -132,5 +114,33 @@ export class CancertypeComponent {
       alert('Person add error ' + event);
     });
   }
+
+  getUrlFix(id : number){
+
+    this.subcancertypeService.getSubCancerTypes(id).subscribe( (resp) => {
+      this.subCancerType = resp;
+      this.subcancertypeService2.getSubCancerTypes2(id).subscribe( (resp2) => {
+        this.subCancerType2 = resp2;
+        console.log(resp2);
+          if( (!this.subCancerType != null) && (Object.keys(this.subCancerType).length != 0)){
+            this.url = '/subCancerTypes';
+          }
+          else if((this.subCancerType2 != null)&& (Object.keys(this.subCancerType2).length != 0)){
+            this.url = '/subCancerTypes2';
+          }
+          else {
+            this.url = '/regimenDetails';
+          }
+
+          this.route.navigateByUrl(this.url + '/' + id);
+        }, function (error) {
+          alert('Error in getting SubCancer Types');
+        });
+
+      }, function (error) {
+        alert('Error in getting SubCancer Types');
+      });
+  }
+
 
 }

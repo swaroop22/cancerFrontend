@@ -58,21 +58,15 @@
                 <thead>
                 <tr>
                   <th>SubCancerLevel Title</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>View Regimens</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let subCancerType of subCancerTypes">
-                  <td ><u [routerLink]="[ url, subCancerType.subcancertypeid]">{{subCancerType.title}}</u></td>
-                  <td>
-                    <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"
-                       (click)="edit(subCancerType)"></i>
-                  </td>
-                  <td>
-                    <i class="fa fa-trash" data-toggle="tooltip" placement="top" tooltip="Delete CancerType"
-                       (click)="delete(subCancerType)"></i>
-                  </td>
+                <tr *ngFor="let subcancerLevel of SubCancerTypeLevels">
+                  {{subcancerLevel | json}}
+                  <td >{{subcancerLevel.id | json}}</td>
+                  <td> <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="View SubCancerType"
+                          ></i></td>
                 </tr>
                 </tbody>
               </table>
@@ -89,7 +83,7 @@
                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancertypes>
 
 <app-addsubcancerlevels *ngIf="isAddSubCancerLevels" (onHide)="onHide('add2')" [config]="{ show: true }" bsModal
-                        #addModal2="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
+                        #addModal2="bs-modal" (yes)="addSubCancerLevels($event)" (cancel)="onClose('add')" class="modal fade"
                         [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes2"></app-addsubcancerlevels>
 
 <app-editsubcancertypes *ngIf="isEditModal" (onHide)="onHide('edit')" [config]="{ show: true }" bsModal
@@ -97,3 +91,6 @@
 
 <app-deletesubcancertypes *ngIf="isDeleteModal" (onHide)="onHide('delete')" [config]="{ show: true }" bsModal
                        #deleteModal="bs-modal" (yes)="deleteSubCancerTypes($event)" (cancel)="onClose('delete')" class="modal fade" [SubCancerType]="SubCancerType"></app-deletesubcancertypes>
+
+
+<app-viewregimens *ngIf="isViewAddressModal" (onHide) = "onHide('view')"  [config]="{ show: true }" bsModal> </app-viewregimens>

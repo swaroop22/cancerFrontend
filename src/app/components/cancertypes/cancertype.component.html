@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let cancerType of CancerTypes">
-                  <td ><u [routerLink]="[url, cancerType.patienttypeid]">{{cancerType.title}}</u></td>
+                  <td > <a  href="javascript:void(0)" (click)="getUrlFix(cancerType.id)">{{cancerType.title}}</a></td>
                   <td>
                     <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"
                        (click)="edit(cancerType)"></i>

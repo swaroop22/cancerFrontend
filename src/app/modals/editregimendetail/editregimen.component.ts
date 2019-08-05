@@ -20,12 +20,12 @@ export class EditregimenComponent{
 
   constructor(private subCancerType1Service: SubcancertypeService,
               private subCancerType2Service: Subcancertype2Service) {
-    this.getSubCancerTypes();
-    this.getSubCancerTypes2();
+    //this.getSubCancerTypes();
+  //  this.getSubCancerTypes2();
   }
 
   okay() {
-    this.RegimenDetail.id = this.id;
+    // this.RegimenDetail.id = this.id;
     this.RegimenDetail.id2 = this.id2;
     this.RegimenDetail.id3 = this.id3;
     this.yes.emit(this.RegimenDetail);
@@ -35,23 +35,23 @@ export class EditregimenComponent{
     this.cancel.emit(event);
   }
 
-  getSubCancerTypes(){
-    const that = this;
-    this.subCancerType1Service.getAllSubCancerTypes1().subscribe(function (resp) {
-      that.subCancerTypes = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer Types');
-    });
-  }
+  // getSubCancerTypes(){
+  //   const that = this;
+  //   this.subCancerType1Service.getAllSubCancerTypes1().subscribe(function (resp) {
+  //     that.subCancerTypes = resp;
+  //   }, function (error) {
+  //     alert('Error in getting SubCancer Types');
+  //   });
+  // }
 
-  getSubCancerTypes2(){
-    const that = this;
-    this.subCancerType2Service.getAllSubCancerTypes2().subscribe(function (resp) {
-      that.subCancerTypes2 = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer2 Types');
-    });
-  }
+  // getSubCancerTypes2(){
+  //   const that = this;
+  //   this.subCancerType2Service.getAllSubCancerTypes2().subscribe(function (resp) {
+  //     that.subCancerTypes2 = resp;
+  //   }, function (error) {
+  //     alert('Error in getting SubCancer2 Types');
+  //   });
+  // }
 
   onSelect(event){
     this.id = event;

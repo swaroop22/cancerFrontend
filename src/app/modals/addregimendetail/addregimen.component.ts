@@ -37,8 +37,8 @@ export class AddregimenComponent implements OnChanges {
   constructor(private subCancerType1Service: SubcancertypeService,
               private subCancerType2Service: Subcancertype2Service,
               private routes: ActivatedRoute) {
-    this.getSubCancerTypes();
-    this.getSubCancerTypes2();
+    // this.getSubCancerTypes();
+    // this.getSubCancerTypes2();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -65,7 +65,7 @@ export class AddregimenComponent implements OnChanges {
   }
 
   okay() {
-    this.RegimenDetail.id2 = this.id2;
+    this.RegimenDetail.id2 = this.routes.snapshot.params["id"];
     this.RegimenDetail.id3 = this.id3;
     this.RegimenDetail.id4 = this.id4;
     this.yes.emit(this.RegimenDetail);
@@ -79,22 +79,22 @@ export class AddregimenComponent implements OnChanges {
     this.id2 = event;
   }
 
-  getSubCancerTypes(){
-    const that = this;
-    this.subCancerType1Service.getAllSubCancerTypes1().subscribe(function (resp) {
-      that.subCancerTypes = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer Types');
-    });
-  }
-
-  getSubCancerTypes2(){
-    const that = this;
-    this.subCancerType2Service.getAllSubCancerTypes2().subscribe(function (resp) {
-      that.subCancerTypes2 = resp;
-    }, function (error) {
-      alert('Error in getting SubCancer Types');
-    });
-  }
+  // getSubCancerTypes(){
+  //   const that = this;
+  //   this.subCancerType1Service.getAllSubCancerTypes1().subscribe(function (resp) {
+  //     that.subCancerTypes = resp;
+  //   }, function (error) {
+  //     alert('Error in getting SubCancer Types');
+  //   });
+  // }
+  //
+  // getSubCancerTypes2(){
+  //   const that = this;
+  //   this.subCancerType2Service.getAllSubCancerTypes2().subscribe(function (resp) {
+  //     that.subCancerTypes2 = resp;
+  //   }, function (error) {
+  //     alert('Error in getting SubCancer Types');
+  //   });
+  // }
 
 }

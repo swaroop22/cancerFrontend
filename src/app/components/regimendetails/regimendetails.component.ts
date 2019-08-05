@@ -125,7 +125,7 @@ export class RegimendetailsComponent implements OnInit {
 
   deleteRegimenDetail(data) {
     const that = this;
-    this.RegimenDetailService.deleteRegimenDetail(data.subCancerTypeId2).subscribe(function (resp) {
+    this.RegimenDetailService.deleteRegimenDetail(data.id).subscribe(function (resp) {
       that.getRegimens();
       that.deleteModal.hide();
     }, function (error) {

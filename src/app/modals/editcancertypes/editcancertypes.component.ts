@@ -18,7 +18,6 @@ export class EditcancertypesComponent{
   }
 
   okay() {
-    this.CancerType.id = this.id;
     this.yes.emit(this.CancerType);
   }
 

@@ -127,7 +127,7 @@ export class SubcancertypesComponent implements OnInit {
     const that = this;
     this.subCancerType1Service.deleteSubCancerTypes(data.id).subscribe(function (resp) {
       that.getSubCancerTypes();
-      that.editModal.hide();
+      that.deleteModal.hide();
     }, function (error) {
       alert('Error to delete SubCancerType ' + data);
     });

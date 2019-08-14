@@ -6,6 +6,7 @@ import {MenuItem} from 'primeng/api';
 import {Subcancertype2Service} from '../../subcancertype2.service';
 import {RegimenDetailService} from '../../regimen-detail.service';
 import {CANCER_TYPES_ENDPOINT, PATIENT_TYPES_ENDPOINT} from '../../global.constants';
+import {SubcancerlevelsService} from '../../subcancerlevels.service';
 
 
 @Component({
@@ -31,14 +32,23 @@ export class SubcancertypesComponent implements OnInit {
   public url: string;
   public SubCancerType2 = {};
   public RegimenDetails = {};
+  public SubCancerTypeLevels = [];
+  public isViewRegimensModal = false;
+  public  subCancerLevel = {};
+  public isAddSubCancerLevels = false;
+  @ViewChild('addModal2') public addModal2: ModalDirective;
+  @ViewChild('viewRegimensModal') public viewRegimensModal: ModalDirective;
+
   subCancerTypes1: string = "subCancerTypes1";
   constructor(private subCancerType1Service: SubcancertypeService,
               private subcancertype2Service: Subcancertype2Service,
               private RegimenDetailService: RegimenDetailService,
               private routes: ActivatedRoute,
+              private subCancerTypeLevels: SubcancerlevelsService,
               private route: Router) {
     this.getSubCancerTypes();
     this.getRegimens();
+    this.getSubCancerLevels();
 
     this.subcancertype2Service.getSubCancerTypes2(this.routes.snapshot.params["id"]).subscribe( value => {
       this.SubCancerType2 = value;
@@ -90,6 +100,10 @@ export class SubcancertypesComponent implements OnInit {
       this.editModal.hide();
     } else if (event === 'delete') {
       this.deleteModal.hide();
+    }  else  if(event === 'view') {
+      this.viewRegimensModal.hide();
+    } else if (event === 'add2') {
+      this.isAddSubCancerLevels = false;
     }
   }
 
@@ -100,6 +114,10 @@ export class SubcancertypesComponent implements OnInit {
       this.isEditModal = false;
     } else if (event === 'delete') {
       this.isDeleteModal = false;
+    } else if(event === 'view'){
+      this.isViewRegimensModal = false;
+    } else if (event === 'add2') {
+      this.isAddSubCancerLevels = false;
     }
   }
 
@@ -123,6 +141,10 @@ export class SubcancertypesComponent implements OnInit {
     });
   }
 
+  showAddSubCancerLevels(){
+    this.isAddSubCancerLevels = true;
+  }
+
   deleteSubCancerTypes(data){
     const that = this;
     this.subCancerType1Service.deleteSubCancerTypes(data.id).subscribe(function (resp) {
@@ -139,6 +161,36 @@ export class SubcancertypesComponent implements OnInit {
       that.RegimenDetails = resp;
     }, function (error) {
       alert('Error in getting medicines');
+    });
+  }
+
+  getSubCancerLevels(){
+    this.subCancerTypeLevels.getAllSubCancerLevels().subscribe((resp) => {
+      this.SubCancerTypeLevels = resp;
+    }, (error) => {
+      alert('Error in getting SubCancer Types');
+    });
+  }
+
+
+  view(event){
+    if(event){
+      this.subCancerLevel = event;
+      this.isViewRegimensModal = true;
+    }
+
+  }
+
+
+  addSubCancerLevels(event){
+    const that = this;
+    this.subCancerTypeLevels.addSubCancerLevels(event).subscribe(function (resp) {
+      that.getSubCancerTypes();
+      that.addModal.hide();
+      that.addModal2.hide();
+      this.isAddSubCancerLevels = false;
+    }, function (error) {
+      alert('Person add error ' + event);
     });
   }
 

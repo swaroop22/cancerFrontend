@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-lg">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Add SubCancer Type</h4>
+      <h4 class="modal-title pull-left">Add SubCancer Levels</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -9,10 +9,10 @@
     <div class="modal-body">
       <form class="form">
         <div class="form-group">
-          <label class="form-control-label">Select SubCancer Types</label>
+          <label class="form-control-label">Select SubCancer Levels</label>
           <select class="form-control" (change)="onSelect($event.target.value)" required>
-            <option>Select Your Patient Type</option>
-            <option *ngFor="let cancerType of CancerTypes" [value]="cancerType.id">{{cancerType.title}}</option>
+            <option>Select Your SubCancerType Type</option>
+            <option *ngFor="let cancerType of subCancerTypes" [value]="cancerType.id">{{cancerType.title}}</option>
           </select>
         </div>
         <div class="form-group">

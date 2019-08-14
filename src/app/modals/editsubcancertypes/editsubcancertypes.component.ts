@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {RegimenDetailService} from '../../regimen-detail.service';
+import {SubcancerlevelsService} from '../../subcancerlevels.service';
+import {MultiSelect} from 'primeng/primeng';
 
 @Component({
   selector: 'app-editsubcancertypes',
@@ -11,8 +13,14 @@ export class EditsubcancertypesComponent{
   @Output() cancel = new EventEmitter();
   @Input() SubCancerType: any;
   public regimenDetails: any= [];
-  constructor(private RegimenDetailService: RegimenDetailService ) {
+  public  subCancerLevel = {};
+  public SubCancerTypeLevels: any = [];
+  @ViewChild('multiselect') multi: MultiSelect;
+  constructor(private RegimenDetailService: RegimenDetailService,
+              private subCancerTypeLevels: SubcancerlevelsService) {
     this.getRegimens();
+    this.getSubCancerLevels();
+
   }
 
   okay() {
@@ -31,6 +39,22 @@ export class EditsubcancertypesComponent{
       });
     }, function (error) {
       alert('Error in getting medicines');
+    });
+  }
+
+
+  view(event){
+    if(event){
+      this.subCancerLevel = event;
+    }
+
+  }
+
+  getSubCancerLevels(){
+    this.subCancerTypeLevels.getAllSubCancerLevels().subscribe((resp) => {
+      this.SubCancerTypeLevels = resp;
+    }, (error) => {
+      alert('Error in getting SubCancer Types');
     });
   }
 

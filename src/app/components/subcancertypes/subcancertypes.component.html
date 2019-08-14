@@ -24,6 +24,9 @@
                 <tbody>
                 <tr *ngFor="let subCancerType of subCancerTypes">
                   <td ><u [routerLink]="[url, subCancerType.id]">{{subCancerType.title}}</u></td>
+                  <td *ngFor="let subcancerLevel of SubCancerTypeLevels">
+                    <label id="label">{{subcancerLevel.title}}</label>
+                  </td>
                   <td>
                     <i class="fa fa-pencil" data-toggle="tooltip" placement="top" tooltip="Edit CancerType"
                        (click)="edit(subCancerType)"></i>
@@ -43,6 +46,7 @@
   </div>
 </div>
 
+
 <app-addsubcancertypes  *ngIf="isAddSubCancerTypeModal" (onHide)="onHide('add')" [config]="{ show: true }" bsModal
                     #addModal="bs-modal" (yes)="addSubCancerTypes($event)" (cancel)="onClose('add')" class="modal fade"
                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes1"></app-addsubcancertypes>
@@ -52,3 +56,7 @@
 
 <app-deletesubcancertypes *ngIf="isDeleteModal" (onHide)="onHide('delete')" [config]="{ show: true }" bsModal
                        #deleteModal="bs-modal" (yes)="deleteSubCancerTypes($event)" (cancel)="onClose('delete')" class="modal fade" [SubCancerType]="SubCancerType"></app-deletesubcancertypes>
+
+<app-addsubcancerlevels *ngIf="isAddSubCancerLevels" (onHide)="onHide('add2')" [config]="{ show: true }" bsModal
+                        #addModal2="bs-modal" (yes)="addSubCancerLevels($event)" (cancel)="onClose('add2')" class="modal fade"
+                        [Error]="addSubCancerTypeError" [subCancerType] = "subCancerTypes"></app-addsubcancerlevels>

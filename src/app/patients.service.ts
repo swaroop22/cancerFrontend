@@ -8,7 +8,7 @@ import {API_URL} from './global.constants';
 
 @Injectable()
 export class PatientsService {
-  private ApiUrl = API_URL +'/patientController/';
+  private ApiUrl ='/patientController/';
 
   constructor(private http: Http) {
   }
